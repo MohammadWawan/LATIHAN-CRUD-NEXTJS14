@@ -32,7 +32,7 @@ export const EditButton = ({ id }: { id: string }) => {
 export const DeleteButton = ({ id }: { id: string }) => {
   const DeleteContactWithId = deleteContact.bind(null, id);
   return (
-    <form action={DeleteContactWithId as any}>
+    <form action={DeleteContactWithId}>
       <button className="rounded-sm border p-1 hover:bg-gray-100">
         <IoTrashOutline size={20} />
       </button>
