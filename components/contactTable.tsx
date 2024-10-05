@@ -1,7 +1,7 @@
 import { getContacts } from "@/lib/data";
 import { FormatDate } from "@/lib/utils";
 import { EditButton, DeleteButton } from "./button";
-import { TableSkeleton } from "@/components/skeleton";
+
 const ContactTable = async ({
   query,
   currentPage,
