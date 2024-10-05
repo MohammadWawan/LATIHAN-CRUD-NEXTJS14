@@ -73,7 +73,7 @@ export const deleteContact = async (id: string) => {
       where: { id },
     });
   } catch (error) {
-    return { message: "Failed to delete contact" };
+    console.log("error");
   }
 
   revalidatePath("/contacts");
