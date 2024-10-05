@@ -48,7 +48,7 @@ const CreateForm = () => {
         </div>
 
         <div id="message-error" arial-live="polite" aria-atomic="true">
-          <p className="mt-2 text-sm text-red-500"> {state?.message}</p>
+          <p className="mt-2 text-sm text-red-500"> </p>
         </div>
         <SubmitButton label="save" />
       </form>

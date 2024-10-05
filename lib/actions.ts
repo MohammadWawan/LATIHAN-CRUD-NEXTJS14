@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "./prisma.1";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -20,17 +20,12 @@ export async function saveContact(prevSate: any, formData: FormData) {
       Error: validatedFields.error.flatten().fieldErrors,
     };
   }
-
-  try {
-    await prisma.contact.create({
-      data: {
-        name: validatedFields.data.name,
-        phone: validatedFields.data.phone,
-      },
-    });
-  } catch (error) {
-    return { message: "Failed to create contact" };
-  }
+  await prisma.contact.create({
+    data: {
+      name: validatedFields.data.name,
+      phone: validatedFields.data.phone,
+    },
+  });
 
   revalidatePath("/contacts");
   redirect("/contacts");
@@ -51,30 +46,22 @@ export async function updateContact(
     };
   }
 
-  try {
-    await prisma.contact.update({
-      data: {
-        name: validatedFields.data.name,
-        phone: validatedFields.data.phone,
-      },
-      where: { id },
-    });
-  } catch (error) {
-    return { message: "Failed to update contact" };
-  }
+  await prisma.contact.update({
+    data: {
+      name: validatedFields.data.name,
+      phone: validatedFields.data.phone,
+    },
+    where: { id },
+  });
 
   revalidatePath("/contacts");
   redirect("/contacts");
 }
 
 export const deleteContact = async (id: string) => {
-  try {
-    await prisma.contact.delete({
-      where: { id },
-    });
-  } catch (error) {
-    console.log("error");
-  }
+  await prisma.contact.delete({
+    where: { id },
+  });
 
   revalidatePath("/contacts");
 };

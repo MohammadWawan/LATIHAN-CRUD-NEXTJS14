@@ -22,20 +22,22 @@ const ContactTable = async ({
         </tr>
       </thead>
       <tbody>
-        {contacts.map((contact, index) => (
-          <tr key={contact.id} className="bg-white border-b">
-            <td className="py-3 px-6">{index + 1}</td>
-            <td className="py-3 px-6">{contact.name}</td>
-            <td className="py-3 px-6">{contact.phone}</td>
-            <td className="py-3 px-6">
-              {FormatDate(contact.createdAt.toString())}
-            </td>
-            <td className="flex justify-center gap-1 py-3">
-              <EditButton id={contact.id} />
-              <DeleteButton id={contact.id} />
-            </td>
-          </tr>
-        ))}
+        {contacts.map((contact, index) => {
+          return (
+            <tr key={contact.id} className="bg-white border-b">
+              <td className="py-3 px-6">{index + 1}</td>
+              <td className="py-3 px-6">{contact.name}</td>
+              <td className="py-3 px-6">{contact.phone}</td>
+              <td className="py-3 px-6">
+                {FormatDate(contact.createdAt.toString())}
+              </td>
+              <td className="flex justify-center gap-1 py-3">
+                <EditButton id={contact.id} />
+                <DeleteButton id={contact.id} />
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
