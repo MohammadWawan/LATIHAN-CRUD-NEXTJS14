@@ -10,7 +10,7 @@ const ContactSchema = z.object({
   phone: z.string().min(11),
 });
 
-export const saveContact = async (prevSate: any, formData: FormData) => {
+export async function saveContact(prevSate: any, formData: FormData) {
   const validatedFields = ContactSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
@@ -34,13 +34,13 @@ export const saveContact = async (prevSate: any, formData: FormData) => {
 
   revalidatePath("/contacts");
   redirect("/contacts");
-};
+}
 
-export const updateContact = async (
+export async function updateContact(
   id: string,
   prevSate: any,
   formData: FormData
-) => {
+) {
   const validatedFields = ContactSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
@@ -65,7 +65,7 @@ export const updateContact = async (
 
   revalidatePath("/contacts");
   redirect("/contacts");
-};
+}
 
 export const deleteContact = async (id: string) => {
   try {
